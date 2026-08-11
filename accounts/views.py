@@ -26,10 +26,6 @@ import os
 import uuid
 
 
-# =========================================================
-# ACTIVITY / HISTORY HELPER
-# =========================================================
-
 def log_activity(request, activity_type, tool_name, description=""):
     """
     Saves activity so it can appear on History page.
@@ -41,24 +37,20 @@ def log_activity(request, activity_type, tool_name, description=""):
     try:
         user = request.user
 
-        # Basic data
         activity_data = {}
 
-        # User field
         try:
             Activity._meta.get_field("user")
             activity_data["user"] = user
         except Exception:
             pass
 
-        # Activity type
         try:
             Activity._meta.get_field("activity_type")
             activity_data["activity_type"] = activity_type
         except Exception:
             pass
 
-        # Try common possible field names for tool name
         possible_name_fields = [
             "tool_name",
             "name",
@@ -74,7 +66,6 @@ def log_activity(request, activity_type, tool_name, description=""):
             except Exception:
                 continue
 
-        # Try common possible description fields
         possible_description_fields = [
             "description",
             "details",
@@ -93,21 +84,12 @@ def log_activity(request, activity_type, tool_name, description=""):
         Activity.objects.create(**activity_data)
 
     except Exception as e:
-        # History problem should never stop the actual AI tool
+     
         print("Activity logging error:", e)
 
 
-# =========================================================
-# LANDING PAGE
-# =========================================================
-
 def landing(request):
     return render(request, "index.html")
-
-
-# =========================================================
-# REGISTER
-# =========================================================
 
 def register_page(request):
 
