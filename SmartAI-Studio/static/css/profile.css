@@ -1,0 +1,804 @@
+/* =========================================================
+   SmartAI Studio - Profile Page
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    background: #081b33;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+
+    background: #0b2447;
+
+    padding: 25px 18px;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 8px 10px;
+
+    margin-bottom: 40px;
+}
+
+.logo i {
+    font-size: 30px;
+    color: #00bfff;
+}
+
+.logo h2 {
+    color: #ffffff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SIDEBAR LIST
+   ========================================================= */
+
+.sidebar ul {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    list-style: none;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   SIDEBAR LINKS
+   ========================================================= */
+
+.sidebar li a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: #d6e4ff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR ICONS
+   ========================================================= */
+
+.sidebar li a i {
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR HOVER
+   ========================================================= */
+
+.sidebar li a:hover {
+    background: rgba(0, 191, 255, 0.15);
+
+    color: #ffffff;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   ACTIVE SIDEBAR
+   ========================================================= */
+
+.sidebar li.active a {
+    background: #00bfff;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 20px rgba(0, 191, 255, 0.25);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 35px;
+
+    width: 100%;
+
+    background: #081b33;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.header h1 i {
+    color: #00bfff;
+
+    margin-right: 10px;
+}
+
+.header p {
+    color: #9fc9ff;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px 15px;
+
+    background: rgba(0, 191, 255, 0.10);
+
+    color: #bfeeff;
+
+    border: 1px solid rgba(0, 191, 255, 0.30);
+
+    border-radius: 8px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+   ========================================================= */
+
+.profile-card {
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    margin-bottom: 30px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   PROFILE TOP
+   ========================================================= */
+
+.profile-top {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding-bottom: 30px;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   PROFILE IMAGE WRAPPER
+   ========================================================= */
+
+.profile-image-wrapper {
+    position: relative;
+
+    width: 170px;
+
+    height: 170px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   ========================================================= */
+
+.profile-image,
+.default-avatar {
+    width: 170px;
+
+    height: 170px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #00bfff;
+
+    background: #102b52;
+
+    display: block;
+
+    box-shadow:
+        0 0 0 5px rgba(0, 191, 255, 0.08),
+        0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   DEFAULT AVATAR
+   ========================================================= */
+
+.default-avatar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #6f9dcc;
+
+    font-size: 55px;
+}
+
+
+/* =========================================================
+   UPLOAD BUTTON
+   ========================================================= */
+
+.upload-label {
+    position: absolute;
+
+    right: -3px;
+
+    bottom: -3px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #00bfff;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    border: 3px solid #081b33;
+
+    transition: 0.3s;
+}
+
+.upload-label:hover {
+    background: #009ad6;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   HIDE FILE INPUT
+   ========================================================= */
+
+#profile_image {
+    display: none;
+}
+
+
+/* =========================================================
+   USER INFO
+   ========================================================= */
+
+.user-info {
+    min-width: 0;
+}
+
+.user-info h2 {
+    font-size: 26px;
+
+    margin-bottom: 7px;
+
+    word-break: break-word;
+}
+
+.user-info p {
+    color: #94a3b8;
+
+    margin-bottom: 5px;
+
+    word-break: break-word;
+}
+
+.user-info .role {
+    color: #60a5fa;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   FORM TITLE
+   ========================================================= */
+
+.form-title {
+    font-size: 21px;
+
+    margin-bottom: 20px;
+}
+
+.form-title i {
+    color: #00bfff;
+
+    margin-right: 8px;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   FORM LABEL
+   ========================================================= */
+
+.form-group label {
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   FORM INPUT
+   ========================================================= */
+
+.form-group input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    background: #102b52;
+
+    color: #ffffff;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #00bfff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 191, 255, 0.15);
+}
+
+
+.email-input {
+    background: #172033 !important;
+
+    color: #94a3b8 !important;
+
+    cursor: not-allowed;
+}
+
+.save-btn {
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #00bfff;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #009ad6;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 191, 255, 0.25);
+}
+
+.activity-card {
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    margin-top: 25px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+.activity-card h2 {
+    margin-bottom: 20px;
+
+    font-size: 22px;
+}
+
+.activity-card h2 i {
+    color: #00bfff;
+
+    margin-right: 8px;
+}
+
+.activity-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-weight: 600;
+
+    min-width: 0;
+}
+
+.activity-name span {
+    word-break: break-word;
+}
+
+.activity-name i {
+    color: #00bfff;
+
+    width: 22px;
+
+    flex-shrink: 0;
+}
+
+.activity-date {
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+}
+
+.no-activity {
+    color: #94a3b8;
+
+    padding: 10px 0;
+}
+
+@media (max-width: 900px) {
+
+    .main {
+        padding: 25px;
+    }
+
+    .profile-card {
+        padding: 25px;
+    }
+
+    .profile-image-wrapper,
+    .profile-image,
+    .default-avatar {
+        width: 150px;
+
+        height: 150px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+
+    .sidebar {
+        width: 100%;
+
+        min-height: auto;
+
+        position: relative;
+
+        padding: 15px;
+    }
+
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+
+    .sidebar ul {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+
+    .sidebar li {
+        margin-bottom: 0;
+    }
+
+
+    .sidebar li a {
+        padding: 10px 13px;
+    }
+
+
+    .main {
+        padding: 20px;
+    }
+
+
+    .profile-top {
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+
+    .activity-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+
+    .activity-date {
+        white-space: normal;
+
+        padding-left: 34px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .main {
+        padding: 15px;
+    }
+
+
+    .profile-card {
+        padding: 20px;
+    }
+
+
+    .activity-card {
+        padding: 20px;
+    }
+
+
+    .profile-image,
+    .default-avatar,
+    .profile-image-wrapper {
+        width: 140px;
+
+        height: 140px;
+    }
+
+
+    .header h1 {
+        font-size: 26px;
+    }
+
+
+    .header p {
+        font-size: 14px;
+    }
+
+
+    .save-btn {
+        width: 100%;
+    }
+
+}
