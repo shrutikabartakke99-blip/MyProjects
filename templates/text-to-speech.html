@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text to Speech | SmartAI Studio</title>
+
+    <link rel="stylesheet" href="{% static 'css/text-to-speech.css' %}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-robot"></i>
+            <h2>SmartAI</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="{% url 'ai_tools' %}">
+                    <i class="fa-solid fa-layer-group"></i>
+                    AI Tools
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'text_generator' %}">
+                    <i class="fa-solid fa-pen"></i>
+                    Text Generator
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'profile' %}">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header>
+
+            <h1>
+                <i class="fa-solid fa-volume-high"></i>
+                Text to Speech
+            </h1>
+
+            <p>
+                Convert your text into realistic AI speech instantly.
+            </p>
+
+        </header>
+
+        <div class="tts-card">
+
+            <form id="ttsForm">
+
+                {% csrf_token %}
+
+                <label>Enter Text</label>
+
+                <textarea
+                    id="text"
+                    name="text"
+                    rows="10"
+                    placeholder="Type anything here..."
+                    required></textarea>
+
+                <div class="buttons">
+
+                    <button type="submit">
+
+                        <i class="fa-solid fa-volume-high"></i>
+
+                        Convert
+
+                    </button>
+
+                    <button
+                        type="button"
+                        id="clearBtn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+<div class="output-card">
+
+    <h2>
+
+        <i class="fa-solid fa-headphones"></i>
+
+        Generated Audio
+
+    </h2>
+
+    <div id="statusMessage"></div>
+
+    <audio
+        id="audioPlayer"
+        controls
+        style="display:none;width:100%;margin-top:20px;">
+
+        <source id="audioSource" src="">
+
+    </audio>
+
+</div>
+
+    </main>
+
+</div>
+
+<script src="{% static 'js/text-to-speech.js' %}"></script>
+
+</body>
+
+</html>

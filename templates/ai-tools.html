@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Tools | SmartAI Studio</title>
+
+    <link rel="stylesheet" href="{% static 'css/ai-tools.css' %}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>🤖 AI Tools</h1>
+
+        <p>Select any AI Tool to Continue</p>
+
+    </header>
+
+    <div class="tools-grid">
+
+        <!-- AI Text Generator -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-pen-nib"></i>
+
+            <h3>AI Text Generator</h3>
+
+            <p>Create Blogs, Articles & Captions.</p>
+
+            <a href="{% url 'text_generator' %}">
+                <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- Text To Speech -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-volume-high"></i>
+
+            <h3>Text To Speech</h3>
+
+            <p>Convert text into natural voice.</p>
+
+            <a href="{% url 'text_to_speech' %}">
+                <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- Speech To Text -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-microphone"></i>
+
+            <h3>Speech To Text</h3>
+
+            <p>Convert voice into text.</p>
+
+            <a href="{% url 'speech_to_text' %}">
+                <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- AI Image Generator -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-image"></i>
+
+            <h3>AI Image Generator</h3>
+
+            <p>Create AI Images instantly.</p>
+
+            <a href="{% url 'image_generator' %}">
+                <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- AI Video Generator -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-video"></i>
+
+            <h3>AI Video Generator</h3>
+
+            <p>Create AI Videos.</p>
+
+            <a href="{% url 'ai_video_generator' %}">
+            <button>Open Tool</button>
+            </a>
+        </div>
+
+        <!-- Resume Builder -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-file-lines"></i>
+
+            <h3>Resume Builder</h3>
+
+            <p>Create ATS Friendly Resume.</p>
+
+            <a href="{% url 'resume_builder' %}">
+                <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- Translator -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-language"></i>
+
+            <h3>Translator</h3>
+
+            <p>Translate 100+ Languages.</p>
+
+            <a href="{% url 'translator' %}">
+            <button>Open Tool</button>
+            </a>
+
+        </div>
+
+        <!-- AI Chatbot -->
+
+        <div class="tool-card">
+
+            <i class="fa-solid fa-comments"></i>
+
+            <h3>AI Chatbot</h3>
+
+            <p>Ask Anything.</p>
+
+            <a href="{% url 'chatbot' %}">
+            <button>Open Tool</button>
+        </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/ai-tools.js' %}"></script>
+
+</body>
+</html>

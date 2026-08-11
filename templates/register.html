@@ -1,0 +1,190 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | SmartAI Studio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+</head>
+
+<body>
+
+    <div class="background-circle one"></div>
+    <div class="background-circle two"></div>
+
+    <div class="register-container">
+
+
+        <div class="left-side">
+
+            <h1>Create Your Account 🚀</h1>
+
+            <p>
+                Join SmartAI Studio and unlock powerful AI tools designed to boost
+                your productivity.
+            </p>
+
+            <ul>
+
+                <li><i class="fa-solid fa-check"></i> AI Text Generator</li>
+
+                <li><i class="fa-solid fa-check"></i> AI Image Generator</li>
+
+                <li><i class="fa-solid fa-check"></i> Text To Speech</li>
+
+                <li><i class="fa-solid fa-check"></i> Speech To Text</li>
+
+                <li><i class="fa-solid fa-check"></i> Resume Builder</li>
+
+                <li><i class="fa-solid fa-check"></i> AI Chat Assistant</li>
+
+            </ul>
+
+        </div>
+
+        <!-- Register Card -->
+
+        <div class="register-card">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                <h2>Create Account</h2>
+
+            </div>
+
+            <form method="POST" id="registerForm">
+            {% csrf_token %}
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                         type="text"
+                         name="fullname"
+                         id="fullname"
+                         placeholder="Full Name"
+                         required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Email Address"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Mobile Number"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create Password"
+                        required>
+
+                    <span id="togglePassword">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </span>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        required>
+
+                </div>
+
+                <div class="terms">
+
+                    <label>
+
+                        <input type="checkbox" required>
+
+                        I agree to the Terms & Conditions
+
+                    </label>
+
+                </div>
+
+                <button type="submit" class="register-btn">
+
+                    Create Account
+
+                </button>
+
+                <div class="divider">
+
+                    <span>OR</span>
+
+                </div>
+
+                <a href="{% provider_login_url 'google' %}" class="google-btn">
+                   <i class="fa-brands fa-google"></i>
+                      Continue with Google
+                </a>
+
+                <p class="login-text">
+
+                    Already have an account?
+
+                   <a href="{% url 'login' %}">Login</a>
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+
+</body>
+
+</html>

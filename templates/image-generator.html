@@ -1,0 +1,598 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Image Generator | SmartAI Studio</title>
+
+   
+    <link rel="stylesheet"
+          href="{% static 'css/image-generator.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-robot"></i>
+
+        <h2>SmartAI</h2>
+
+    </div>
+
+
+    <ul>
+
+        <!-- Dashboard -->
+
+        <li>
+
+            <a href="{% url 'dashboard' %}">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </li>
+
+
+        <!-- AI Tools -->
+
+        <li class="active">
+
+            <a href="{% url 'ai_tools' %}">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <span>AI Tools</span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Text Generator -->
+
+        <li>
+
+            <a href="{% url 'text_generator' %}">
+
+                <i class="fa-solid fa-pen"></i>
+
+                <span>Text Generator</span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Profile -->
+
+        <li>
+
+            <a href="{% url 'profile' %}">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Profile</span>
+
+            </a>
+
+        </li>
+
+
+        <!-- Logout -->
+
+        <li>
+
+            <a href="{% url 'logout' %}">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+
+<main class="main">
+
+
+    <!-- HEADER -->
+
+    <header class="page-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-image"></i>
+
+                AI Image Generator
+
+            </h1>
+
+            <p>
+                Generate stunning AI images from your text prompts.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <section class="prompt-card">
+
+
+        <div class="card-title">
+
+            <div class="title-icon">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            </div>
+
+
+            <div>
+
+                <h2>Generate Your Image</h2>
+
+                <p>
+                    Describe the image you want to create.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form id="imageForm"
+              method="POST">
+
+
+            {% csrf_token %}
+
+
+            <!-- Prompt Label -->
+
+            <label for="prompt">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Enter Image Prompt
+
+            </label>
+
+
+
+            <!-- Prompt -->
+
+            <textarea
+                id="prompt"
+                name="prompt"
+                rows="8"
+                placeholder="Example:
+
+A futuristic AI robot working in a cyberpunk city...
+
+A beautiful sunset over snowy mountains...
+
+A realistic lion wearing sunglasses..."
+                required>{% if request.POST.prompt %}{{ request.POST.prompt }}{% endif %}</textarea>
+
+
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+
+                <!-- Generate -->
+
+                <button
+                    type="submit"
+                    id="generateBtn"
+                    class="generate-btn">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    Generate Image
+
+                </button>
+
+
+
+                <!-- Clear -->
+
+                <button
+                    type="button"
+                    id="clearBtn"
+                    class="clear-btn">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Clear
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+
+    <section
+        id="loader"
+        class="loader"
+        style="display:none;">
+
+
+        <div class="loader-icon">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+        </div>
+
+
+        <h3>
+            Generating Your AI Image...
+        </h3>
+
+
+        <p>
+            Please wait while SmartAI creates your image.
+        </p>
+
+
+    </section>
+
+
+    <section class="output-card">
+
+
+        <div class="output-header">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-play"></i>
+
+                Generated Image
+
+            </h2>
+
+        </div>
+
+
+
+        <div class="image-box">
+
+
+            {% if image_url %}
+
+
+                <img
+                    id="generatedImage"
+                    src="{{ image_url }}"
+                    alt="Generated AI Image">
+
+
+            {% else %}
+
+
+                <img
+                    id="generatedImage"
+                    src="{% static 'images/image-placeholder.png' %}"
+                    alt="Image Preview">
+
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        {% if image_url %}
+
+        <div class="image-actions">
+
+            <a
+                href="{{ image_url }}"
+                download
+                class="download-btn">
+
+                <i class="fa-solid fa-download"></i>
+
+                Download Image
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+    </section>
+
+
+    <section class="suggestions">
+
+
+        <div class="suggestions-header">
+
+            <div>
+
+                <h2>
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    Quick Prompts
+
+                </h2>
+
+                <p>
+                    Click a prompt to automatically fill the textbox.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="chips">
+
+
+            <!-- Cyberpunk -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A futuristic cyberpunk city at night, neon lights, flying cars, cinematic lighting, ultra realistic, highly detailed.">
+
+                🌃 Cyberpunk City
+
+            </button>
+
+
+
+            <!-- Galaxy -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A beautiful galaxy in deep space, colorful nebula, glowing stars, planets and cosmic clouds, cinematic lighting, ultra detailed.">
+
+                🌌 Space Galaxy
+
+            </button>
+
+
+
+            <!-- Anime -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A beautiful anime girl walking through a Tokyo street at night, colorful neon signs, cinematic lighting, detailed anime artwork.">
+
+                👩 Anime Girl
+
+            </button>
+
+
+
+            <!-- Castle -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A magnificent fantasy castle on top of a mountain surrounded by clouds, magical atmosphere, dramatic sky, cinematic fantasy artwork.">
+
+                🏰 Fantasy Castle
+
+            </button>
+
+
+
+            <!-- Cat -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A cute white cat wearing stylish sunglasses, sitting in a beautiful room, realistic photography, soft cinematic lighting.">
+
+                🐱 Cute Cat
+
+            </button>
+
+
+
+            <!-- Car -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A luxury red sports car driving on a mountain highway during sunset, golden hour lighting, cinematic photography, ultra realistic.">
+
+                🚗 Luxury Car
+
+            </button>
+
+
+
+            <!-- Nature -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A breathtaking natural landscape with tall mountains, green valley, beautiful waterfall and warm sunlight, cinematic photography, highly detailed.">
+
+                🌄 Nature Landscape
+
+            </button>
+
+
+
+            <!-- AI Robot -->
+
+            <button
+                type="button"
+                class="chip"
+                data-prompt="A humanoid AI robot working inside a futuristic laboratory, blue neon lights, advanced technology, cinematic lighting, ultra realistic.">
+
+                🤖 AI Robot
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- INTERACTIVE FEATURES -->
+
+   <section class="info-section">
+
+    <!-- AI POWERED -->
+    <div class="info-card interactive-card"
+         data-title="AI Powered"
+         data-description="SmartAI uses artificial intelligence to transform your text prompt into a creative image. Just describe your idea and let AI handle the generation."
+         data-icon="fa-wand-magic-sparkles">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+
+        <h3>AI Powered</h3>
+
+        <p>
+            Generate creative images using AI.
+        </p>
+
+        <span class="click-hint">
+            <i class="fa-solid fa-hand-pointer"></i>
+            Click to explore
+        </span>
+
+    </div>
+
+
+    <!-- HIGH QUALITY -->
+    <div class="info-card interactive-card"
+         data-title="High Quality"
+         data-description="Create detailed and visually attractive images from simple text prompts. SmartAI converts your ideas into rich AI-generated visuals."
+         data-icon="fa-image">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-image"></i>
+        </div>
+
+        <h3>High Quality</h3>
+
+        <p>
+            Create detailed images from simple prompts.
+        </p>
+
+        <span class="click-hint">
+            <i class="fa-solid fa-hand-pointer"></i>
+            Click to explore
+        </span>
+
+    </div>
+
+
+    <!-- EASY TO USE -->
+    <div class="info-card interactive-card"
+         data-title="Easy to Use"
+         data-description="No complicated settings are required. Enter your prompt, select a quick prompt if you want, and click Generate Image."
+         data-icon="fa-bolt">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-bolt"></i>
+        </div>
+
+        <h3>Easy to Use</h3>
+
+        <p>
+            Select a quick prompt or write your own.
+        </p>
+
+        <span class="click-hint">
+            <i class="fa-solid fa-hand-pointer"></i>
+            Click to explore
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURE POPUP -->
+
+  <div id="featureModal" class="feature-modal">
+
+    <div class="feature-modal-content">
+
+        <button id="closeFeatureModal" class="close-feature">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-icon">
+            <i id="modalIcon" class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+
+        <h2 id="modalTitle">
+            AI Powered
+        </h2>
+
+        <p id="modalDescription">
+            SmartAI uses artificial intelligence to generate creative images.
+        </p>
+
+        <button id="tryFeatureBtn" class="try-feature-btn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Try Image Generator
+        </button>
+
+    </div>
+
+  </div>
+</main>
+
+<script src="{% static 'js/image-generator.js' %}"></script>
+
+
+</body>
+
+</html>
