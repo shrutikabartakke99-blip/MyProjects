@@ -1,0 +1,657 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | SmartAI Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+
+        <div class="logo-text">
+            <span>Smart</span>AI
+        </div>
+
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="sidebar-link"
+        >
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+
+        <a
+            href="{% url 'profile' %}"
+            class="sidebar-link"
+        >
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+
+        <a
+            href="{% url 'history' %}"
+            class="sidebar-link"
+        >
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>History</span>
+        </a>
+
+
+        <a
+            href="{% url 'settings' %}"
+            class="sidebar-link active"
+        >
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+
+        <a
+            href="{% url 'logout' %}"
+            class="sidebar-link logout-link"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+    </nav>
+
+</aside>
+
+<main class="main-content">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Settings</h1>
+
+            <p>
+                Manage your SmartAI Studio preferences and account.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-layout">
+
+        <aside class="settings-menu">
+
+            <button
+                class="settings-tab active"
+                data-section="general"
+            >
+                <i class="fa-solid fa-user"></i>
+
+                <div>
+                    <strong>General</strong>
+                    <small>Account information</small>
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-tab"
+                data-section="appearance"
+            >
+                <i class="fa-solid fa-palette"></i>
+
+                <div>
+                    <strong>Appearance</strong>
+                    <small>Theme & interface</small>
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-tab"
+                data-section="notifications"
+            >
+                <i class="fa-solid fa-bell"></i>
+
+                <div>
+                    <strong>Notifications</strong>
+                    <small>Notification preferences</small>
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-tab"
+                data-section="ai"
+            >
+                <i class="fa-solid fa-robot"></i>
+
+                <div>
+                    <strong>AI Preferences</strong>
+                    <small>AI generation settings</small>
+                </div>
+
+            </button>
+
+
+            <button
+                class="settings-tab"
+                data-section="security"
+            >
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <strong>Security</strong>
+                    <small>Account security</small>
+                </div>
+
+            </button>
+
+        </aside>
+
+        <section class="settings-content">
+
+            <div
+                class="settings-section active"
+                id="general"
+            >
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+                        <h2>General</h2>
+
+                        <p>
+                            Manage your SmartAI account information.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Account</h3>
+
+                        <p>
+                            Your registered SmartAI account.
+                        </p>
+
+                    </div>
+
+                    <div class="account-info">
+
+                        <strong>
+                            {{ request.user.first_name }}
+                        </strong>
+
+                        <span>
+                            {{ request.user.email }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Name</h3>
+
+                        <p>
+                            Your display name.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="edit-btn"
+                        onclick="editName()"
+                    >
+                        <i class="fa-solid fa-pen"></i>
+                        Edit
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Email</h3>
+
+                        <p>
+                            {{ request.user.email }}
+                        </p>
+
+                    </div>
+
+                    <span class="verified">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Verified
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div
+                class="settings-section"
+                id="appearance"
+            >
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Appearance</h2>
+
+                        <p>
+                            Customize how SmartAI Studio looks.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Theme</h3>
+
+                        <p>
+                            Choose between light and dark mode.
+                        </p>
+
+                    </div>
+
+
+                    <select
+                        id="themeSelect"
+                        class="theme-select"
+                    >
+
+                        <option value="dark">
+                            Dark Mode
+                        </option>
+
+                        <option value="light">
+                            Light Mode
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Dark Mode</h3>
+
+                        <p>
+                            Keep SmartAI comfortable for your eyes.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="darkModeToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Compact Mode</h3>
+
+                        <p>
+                            Reduce spacing for a compact interface.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="compactToggle"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                class="settings-section"
+                id="notifications"
+            >
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Notifications</h2>
+
+                        <p>
+                            Control SmartAI notifications.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>AI Generation Notifications</h3>
+
+                        <p>
+                            Show notifications when AI tasks are completed.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="aiNotificationToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Email Notifications</h3>
+
+                        <p>
+                            Receive important SmartAI updates by email.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="emailNotificationToggle"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                class="settings-section"
+                id="ai"
+            >
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>AI Preferences</h2>
+
+                        <p>
+                            Customize your AI generation experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>AI Response Language</h3>
+
+                        <p>
+                            Select your preferred AI response language.
+                        </p>
+
+                    </div>
+
+
+                    <select
+                        id="languageSelect"
+                        class="theme-select"
+                    >
+
+                        <option>English</option>
+
+                        <option>Hindi</option>
+
+                        <option>Marathi</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>SmartAI Mode</h3>
+
+                        <p>
+                            Automatically optimize AI responses.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="smartModeToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                class="settings-section"
+                id="security"
+            >
+
+                <div class="section-heading">
+
+                    <div class="heading-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Security</h2>
+
+                        <p>
+                            Manage your account security.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Password</h3>
+
+                        <p>
+                            Change your SmartAI account password.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="edit-btn"
+                        onclick="changePassword()"
+                    >
+                        Change Password
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>Login Security</h3>
+
+                        <p>
+                            Your account is protected with password authentication.
+                        </p>
+
+                    </div>
+
+                    <span class="security-status">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Protected
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="save-area">
+
+                <button
+                    id="saveSettings"
+                    class="save-btn"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Settings
+
+                </button>
+
+                <span
+                    id="saveMessage"
+                    class="save-message"
+                >
+                </span>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<script src="{% static 'js/settings.js' %}"></script>
+
+</body>
+</html>

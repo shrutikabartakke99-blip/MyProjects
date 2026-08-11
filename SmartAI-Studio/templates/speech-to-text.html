@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Speech To Text | SmartAI Studio</title>
+
+    <link rel="stylesheet" href="{% static 'css/speech-to-text.css' %}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-robot"></i>
+            <h2>SmartAI</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="{% url 'dashboard' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="{% url 'ai_tools' %}">
+                    <i class="fa-solid fa-layer-group"></i>
+                    AI Tools
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'profile' %}">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <main class="main">
+
+        <h1>🎤 Speech To Text</h1>
+
+        <p>Speak through your microphone and convert speech into text.</p>
+
+        <textarea
+            id="output"
+            placeholder="Your speech will appear here..."
+        ></textarea>
+
+        <div class="buttons">
+
+            <button id="start-btn">
+                🎤 Start Listening
+            </button>
+
+            <button id="stop-btn">
+                ⏹ Stop
+            </button>
+
+            <button id="clear-btn">
+                🗑 Clear
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="{% static 'js/speech-to-text.js' %}"></script>
+
+</body>
+</html>
