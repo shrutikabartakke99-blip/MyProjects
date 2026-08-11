@@ -1,4 +1,4 @@
-🤖 SmartAI Studio
+# 🤖 SmartAI Studio
 
 SmartAI Studio is an AI-powered web application developed using Django that provides multiple useful AI tools in a single platform.
 
@@ -6,20 +6,19 @@ The application brings together AI content generation, text-to-speech, speech-to
 
 ---
 
-📌 Project Description
+## 📌 Project Description
 
 SmartAI Studio is designed as an all-in-one AI platform where users can access multiple AI-powered tools from a single web application.
 
-Instead of using different platforms for different AI tasks, users can use SmartAI Studio to perform various tasks such as generating text, creating images and videos, converting text to speech, converting speech to text,
-building resumes, translating content, and interacting with an AI chatbot.
+Instead of using different platforms for different AI tasks, users can use SmartAI Studio to perform various tasks such as generating text, creating images and videos, converting text to speech, converting speech to text, building resumes, translating content, and interacting with an AI chatbot.
 
 The project is developed using Django as the backend framework and integrates external AI APIs and Python libraries for different AI functionalities.
 
 ---
 
-🚀 Features
+## 🚀 Features
 
-1. AI Text Generator
+### 1. 📝 AI Text Generator
 
 - Generate AI-powered text from user prompts.
 - Useful for content creation and writing assistance.
@@ -28,7 +27,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 2. Text To Speech
+### 2. 🔊 Text To Speech
 
 - Converts written text into speech.
 - Uses the Google Text-to-Speech (`gTTS`) library.
@@ -37,7 +36,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
-3. Speech To Text
+### 3. 🎤 Speech To Text
 
 - Converts spoken audio into text.
 - Allows users to provide speech/audio input.
@@ -46,7 +45,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 4. AI Image Generator
+### 4. 🖼️ AI Image Generator
 
 - Generates AI-based images from text prompts.
 - Users can describe the required image using a prompt.
@@ -55,7 +54,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 5. AI Video Generator
+### 5. 🎬 AI Video Generator
 
 - Generates AI-based videos from text prompts.
 - Uses the **Magic Hour API** for video generation.
@@ -66,7 +65,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 6. Resume Builder
+### 6. 📄 Resume Builder
 
 - Helps users create a professional resume.
 - Users can enter their personal and professional information.
@@ -76,7 +75,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 7. Translator
+### 7. 🌐 Translator
 
 - Translates text from one language to another.
 - Provides a simple interface for entering text.
@@ -85,7 +84,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 8. AI Chatbot
+### 8. 💬 AI Chatbot
 
 - Provides an interactive AI chatbot.
 - Users can ask questions using natural language.
@@ -94,7 +93,7 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
- 9. User Authentication & Profile
+### 9. 👤 User Authentication & Profile
 
 - User registration and login.
 - Secure authentication system.
@@ -105,39 +104,39 @@ The project is developed using Django as the backend framework and integrates ex
 
 ---
 
-🛠️ Technology Stack
+## 🛠️ Technology Stack
 
-Backend
+### Backend
 
 - Python
 - Django
 - Django Authentication
 - Django Allauth
 
-Frontend
+### Frontend
 
 - HTML5
 - CSS3
 - JavaScript
 - Font Awesome
 
-#AI & APIs
+### AI & APIs
 
 - Google Gemini / Generative AI
 - Magic Hour API
 - Google Text-to-Speech (`gTTS`)
 
-* Document Processing
+### Document Processing
 
 - Python-docx
 - ReportLab
 - Pillow
 
-* Database
+### Database
 
 - SQLite3
 
-* Development Tools
+### Development Tools
 
 - Visual Studio Code
 - Git
@@ -146,8 +145,9 @@ Frontend
 
 ---
 
-# Project Structure
+## 📂 Project Structure
 
+```text
 SmartAI-Studio/
 │
 ├── accounts/
@@ -190,102 +190,167 @@ SmartAI-Studio/
 ├── .env
 └── README.md
 
+----
 
-# Installation & Setup
+⚙️ Installation & Setup
+
+Follow the steps below to run SmartAI Studio on your local system.
 
 1. Clone the Repository
-   Clone the project from GitHub:
 
- - git clone <YOUR-GITHUB-REPOSITORY-URL>
- - cd SmartAI-Studio
+Clone the project from GitHub:
+
+git clone <YOUR-GITHUB-REPOSITORY-URL>
+
+Navigate to the project directory:
+
+cd SmartAI-Studio
 
 2. Create a Virtual Environment
- - python -m venv venv
- - venv\Scripts\activate
-   If PowerShell blocks the activation script, you can use:
- - venv\Scripts\activate.bat
-   or open Command Prompt and activate it there.
-   * Mac / Linux
-  - source venv/bin/activate
 
-3. Install Required Packages
- - pip install -r requirements.txt
+Create a Python virtual environment:
 
-# Environment Variables
+python -m venv venv
+
+3. Activate the Virtual Environment
+   Windows
+venv\Scripts\activate
+
+If PowerShell blocks the activation script, you can use:
+
+venv\Scripts\activate.bat
+
+or open Command Prompt and activate it there.
+
+Mac / Linux
+source venv/bin/activate
+
+4. Install Required Packages
+
+Install all required Python dependencies:
+pip install -r requirements.txt
+
+
+🔐 Environment Variables
 
 SmartAI Studio uses API keys for external AI services.
 
 Create a .env file in the project root directory.
+
+Add the required API keys:
+
 GEMINI_API_KEY=your_gemini_api_key
 MAGIC_HOUR_API_KEY=your_magic_hour_api_key
 
-# Database Setup
+Replace the placeholder values with your actual API keys.
 
-  Run Django migrations:
-
-  - python manage.py makemigrations
- Then:
-  - python manage.py migrate
-
-This will create the required database tables
-
-# Create Admin User
-
- To create a Django administrator account:
-  - python manage.py createsuperuser
-
-# Run the Project
-
- Start the Django development server:
-
-  - python manage.py runserver
-
- The application will normally be available at:
-
-  - http://127.0.0.1:8000/
-
- # Testing
-
- To run Django's tests: python manage.py test
+Important: Never upload the .env file to GitHub.
 
 
- # How SmartAI Studio Works
+🗄️ Database Setup
 
- User
-  │
-  ▼
-SmartAI Studio Web Interface
-  │
-  ├── AI Text Generator
-  │
-  ├── Text To Speech
-  │
-  ├── Speech To Text
-  │
-  ├── AI Image Generator
-  │
-  ├── AI Video Generator
-  │        │
-  │        └── Magic Hour API
-  │
-  ├── Resume Builder
-  │
-  ├── Translator
-  │
-  └── AI Chatbot
-  │
-  ▼
-Django Backend
-  │
-  ▼
-AI APIs / Python Libraries
-  │
-  ▼
-Generated Result
-  │
-  ▼
-Displayed to User
+Run Django migrations:
 
+python manage.py makemigrations
+
+Then:
+
+python manage.py migrate
+
+This will create the required database tables.
+
+
+👤 Create Admin User
+
+To create a Django administrator account:
+
+python manage.py createsuperuser
+
+Follow the instructions shown in the terminal.
+
+
+▶️ Run the Project
+
+Start the Django development server:
+
+python manage.py runserver
+
+The application will normally be available at:
+
+http://127.0.0.1:8000/
+
+Open the URL in your browser.
+
+
+🧪 Testing
+
+To run Django's tests:
+
+python manage.py test
+
+🔑 API Configuration
+
+SmartAI Studio uses external services for AI-powered functionality.
+
+Google Gemini
+
+Used for AI-powered features such as:
+
+AI text generation
+AI chatbot functionality
+Other configured Gemini-based AI features
+Magic Hour
+
+Used for:
+
+AI video generation
+
+The Magic Hour API key should be stored securely in the .env file.
+
+
+🔄 How SmartAI Studio Works
+
+The general workflow of the application is:
+
+                    User
+                      │
+                      ▼
+          SmartAI Studio Web Interface
+                      │
+       ┌──────────────┼──────────────┐
+       │              │              │
+       ▼              ▼              ▼
+ AI Text Generator  Text To Speech  Speech To Text
+       │
+       ▼
+ AI Image Generator
+       │
+       ▼
+ AI Video Generator
+       │
+       ▼
+  Magic Hour API
+       │
+       ▼
+ Resume Builder
+       │
+       ▼
+    Translator
+       │
+       ▼
+    AI Chatbot
+       │
+       ▼
+   Django Backend
+       │
+       ▼
+ AI APIs / Python Libraries
+       │
+       ▼
+ Generated Result
+       │
+       ▼
+   Displayed to User
 
 ⚠️ Common Issues
 python is not recognized
@@ -321,21 +386,10 @@ Cloud storage integration
 Deployment to a production server
 Improved UI/UX and responsive design
 
-* Author
-  Shrutika Bartakke
+👩‍💻 Author
+Shrutika Bartakke
+Computer Engineer 
+Interested in AI, Web Development, Machine Learning and Data Analytics.
 
-  Computer Engineering Student
-  Interested in AI, Web Development, Machine Learning and Data Analytics.
-
-* License
-  This project is developed for educational and academic purposes.
-
-
-
-
-
-
-
-
-
-
+📜 License
+This project is developed for educational and academic purposes.
